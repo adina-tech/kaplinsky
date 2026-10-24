@@ -1,0 +1,5 @@
+// Side gutter that also clears a phone's side system bar
+@mixin gutter {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}

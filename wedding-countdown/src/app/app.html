@@ -1,0 +1,12 @@
+<app-hero (finished)="onArrived()" />
+
+<main>
+  @if (arrived()) {
+    <section class="celebration" #celebration>
+      <h2>מזל טוב!</h2>
+      <p>הגיע היום הגדול. יהודה ושולמית נכנסים לחופה, ואנחנו שמחים איתם מכל הלב.</p>
+    </section>
+  }
+
+  <app-blessing />
+</main>

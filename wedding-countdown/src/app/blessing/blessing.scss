@@ -1,0 +1,70 @@
+@use '../../gutter' as *;
+
+:host { display: block; }
+
+.blessing {
+  @include gutter;
+  padding-block: 64px 72px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  text-align: center;
+  background: radial-gradient(ellipse at 50% 0%, rgba(22, 74, 85, 0.9), transparent 70%), var(--sea-deep);
+}
+
+.wave { width: 120px; height: 18px; color: var(--gold); }
+
+.verse {
+  margin: 0;
+  max-width: 22ch;
+  font-family: var(--f-serif);
+  font-weight: 300;
+  font-size: clamp(26px, 6vw, 40px);
+  line-height: 1.35;
+  text-wrap: balance;
+
+  em { font-style: normal; color: var(--blush); }
+}
+
+.source { font-size: 13px; letter-spacing: 0.2em; color: var(--foam-dim); }
+
+.wish {
+  margin: 8px 0 0;
+  max-width: 56ch;
+  font-size: 18px;
+  line-height: 1.85;
+  color: var(--foam-dim);
+
+  strong { color: var(--foam); font-weight: 600; }
+}
+
+footer {
+  @include gutter;
+  padding-block: 0 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  text-align: center;
+}
+
+.burst {
+  font: 600 15px/1 var(--f-body);
+  letter-spacing: 0.06em;
+  color: var(--sea-deep);
+  background: linear-gradient(135deg, var(--gold), var(--blush));
+  border: 0;
+  border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(244, 185, 178, 0.6);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -10px rgba(244, 185, 178, 0.75); }
+  &:active { transform: translateY(0) scale(0.97); }
+  &:focus-visible { outline: 2px solid var(--foam); outline-offset: 4px; }
+}
+
+.sign { font-family: var(--f-display); font-size: 22px; }
+.small { font-size: 13px; color: var(--foam-dim); letter-spacing: 0.1em; }

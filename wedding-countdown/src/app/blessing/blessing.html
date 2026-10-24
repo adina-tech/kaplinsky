@@ -1,0 +1,17 @@
+<section class="blessing">
+  <svg class="wave" viewBox="0 0 120 18" fill="none" aria-hidden="true">
+    <path d="M2 9c10-8 19-8 29 0s19 8 29 0 19-8 29 0 19 8 29 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" />
+  </svg>
+  <p class="verse">קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה,<br><em>קוֹל חָתָן וְקוֹל כַּלָּה</em></p>
+  <span class="source">ירמיהו ל״ג</span>
+  <p class="wish">
+    לכבוד <strong>{{ wedding.groom }} ו{{ wedding.bride }}</strong>, שתזכו לבנות בית נאמן בישראל, מלא אהבה, אחווה, שלום ורעות.
+   
+  </p>
+</section>
+
+<footer>
+  <button class="burst" type="button" (click)="sendConfetti($event)">שלחו קונפטי לזוג</button>
+  <span class="sign">באהבה גדולה</span>
+  <span class="small">נתראה בחתונה</span>
+</footer>

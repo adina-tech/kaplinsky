@@ -1,0 +1,20 @@
+<img class="photo" [src]="wedding.photo" [alt]="wedding.groom + ' ו' + wedding.bride + ' על שפת הים'">
+<div class="veil"></div>
+<canvas class="glints" appGlints aria-hidden="true"></canvas>
+
+<div class="inner">
+  <span class="bsd">בס״ד</span>
+  <p class="kicker">מתרגשים וסופרים את הימים</p>
+  <h1>
+    <span class="name">{{ wedding.groom }}</span>
+    <span class="amp">&amp;</span>
+    <span class="name">{{ wedding.bride }}</span>
+  </h1>
+  <div class="dates">
+    <span class="heb">{{ wedding.hebrewDate }}</span>
+    <span class="dot" aria-hidden="true"></span>
+    <span class="greg">{{ wedding.gregorianDate }}</span>
+  </div>
+</div>
+
+<app-countdown class="countdown" [target]="wedding.date" (finished)="finished.emit()" />

@@ -1,0 +1,25 @@
+<span class="label">עד החופה</span>
+
+<div class="tiles" role="timer">
+  @for (unit of units(); track unit.label) {
+    <div class="tile">
+      <!-- keyed on the value so the tick animation replays on every change -->
+      @for (v of [unit.value]; track v) {
+        <span class="num">{{ v }}</span>
+      }
+      <span class="unit">{{ unit.label }}</span>
+    </div>
+  }
+</div>
+
+<p class="shabbatot">
+  @if (remaining() === 0) {
+    החופה כבר כאן
+  } @else if (shabbatot() > 1) {
+    עוד <strong>{{ shabbatot() }}</strong> שבתות, ונפגשים מתחת לחופה
+  } @else if (shabbatot() === 1) {
+    עוד <strong>שבת אחת</strong>, ונפגשים מתחת לחופה
+  } @else {
+    השבוע! נפגשים מתחת לחופה
+  }
+</p>

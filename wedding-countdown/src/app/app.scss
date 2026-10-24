@@ -1,0 +1,19 @@
+@use '../gutter' as *;
+
+.celebration {
+  @include gutter;
+  padding-block: 48px 8px;
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-family: var(--f-display);
+    font-weight: 400;
+    font-size: clamp(44px, 11vw, 96px);
+    line-height: 1.05;
+    color: var(--gold);
+    animation: pop 1.4s both ease-out;
+  }
+
+  p { margin: 10px auto 0; max-width: 34ch; font-size: 19px; }
+}

@@ -1,0 +1,6 @@
+{
+  "framework": null,
+  "installCommand": "cd wedding-countdown && npm ci",
+  "buildCommand": "cd wedding-countdown && npm run build",
+  "outputDirectory": "wedding-countdown/dist/wedding-countdown/browser"
+}

@@ -1,0 +1,129 @@
+@use '../../gutter' as *;
+
+:host {
+  position: relative;
+  min-height: clamp(600px, 92svh, 900px);
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 52% 55%;
+  z-index: -3;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from { transform: scale(1.04); }
+  to { transform: scale(1.12) translateY(-1.5%); }
+}
+
+.veil {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(11, 37, 48, 0.72) 0%, rgba(11, 37, 48, 0.28) 30%, rgba(11, 37, 48, 0) 48%, rgba(11, 37, 48, 0.15) 70%, var(--sea-deep) 100%),
+    radial-gradient(ellipse at 50% 10%, rgba(244, 185, 178, 0.25), transparent 60%);
+}
+
+.glints {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.inner {
+  @include gutter;
+  padding-block: 28px 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.bsd {
+  align-self: flex-start;
+  font-family: var(--f-serif);
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  color: var(--foam-dim);
+}
+
+.kicker {
+  margin: 10px 0 0;
+  font-weight: 300;
+  font-size: clamp(15px, 3.6vw, 19px);
+  letter-spacing: 0.14em;
+  color: var(--blush);
+  animation: rise 1.2s 0.2s both var(--ease);
+}
+
+h1 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(52px, 13vw, 128px);
+  line-height: 1.02;
+  text-shadow: 0 4px 30px rgba(11, 37, 48, 0.55);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
+  column-gap: 0.25em;
+}
+
+.name {
+  display: inline-block;
+  animation: rise 1.4s 0.4s both var(--ease);
+  &:last-child { animation-delay: 0.75s; }
+}
+
+.amp {
+  display: inline-block;
+  font-family: var(--f-digits);
+  font-style: italic;
+  font-size: 0.78em;
+  color: var(--gold);
+  animation: pop 1.6s 0.6s both ease-out;
+}
+
+.dates {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px 16px;
+  font-family: var(--f-serif);
+  font-weight: 300;
+  font-size: clamp(17px, 4vw, 22px);
+  animation: rise 1.2s 1s both var(--ease);
+
+  .heb { color: var(--gold); font-weight: 500; }
+  .greg { font-family: var(--f-digits); font-size: 1.08em; letter-spacing: 0.06em; }
+  .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blush); }
+}
+
+.countdown {
+  @include gutter;
+  margin-top: auto;
+  padding-block: 0 40px;
+  animation: rise 1.2s 1.3s both var(--ease);
+}
+
+@media (min-width: 900px) {
+  .inner { padding-block: 40px 0; }
+  .countdown { padding-block: 0 64px; }
+}
