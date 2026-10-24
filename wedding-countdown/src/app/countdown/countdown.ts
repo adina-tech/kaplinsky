@@ -1,6 +1,5 @@
 import { Component, computed, DestroyRef, effect, inject, input, output, signal } from '@angular/core';
 
-const DAY = 86_400_000;
 const pad = (n: number) => String(n).padStart(2, '0');
 
 @Component({
@@ -24,18 +23,6 @@ export class Countdown {
       { label: 'דקות', value: pad(Math.floor(sec / 60) % 60) },
       { label: 'שניות', value: pad(sec % 60) },
     ];
-  });
-
-  /** Saturdays left between tomorrow and the wedding day. */
-  protected readonly shabbatot = computed(() => {
-    const day = new Date(this.now());
-    day.setHours(0, 0, 0, 0);
-    const end = this.target().getTime();
-    let count = 0;
-    for (let t = day.getTime() + DAY; t < end; t += DAY) {
-      if (new Date(t).getDay() === 6) count++;
-    }
-    return count;
   });
 
   constructor() {
