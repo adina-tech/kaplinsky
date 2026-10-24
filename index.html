@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>יהודה ושולמית</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600&family=Bellefair&family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Frank+Ruhl+Libre:wght@300;500&display=swap">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: the couple's own seaside photo is the hero; names float in the empty sky,
+   glass countdown tiles sit over the surf line, a quiet blessing follows below. */
+:root {
+  --sea-deep: #0b2530;
+  --sea: #164a55;
+  --foam: #f1f7f5;
+  --foam-dim: #b9d3d0;
+  --blush: #f4b9b2;
+  --gold: #e6c78f;
+  --glass: rgba(255, 255, 255, 0.12);
+  --glass-edge: rgba(255, 255, 255, 0.32);
+  --f-display: "Bellefair", "Frank Ruhl Libre", "David", serif;
+  --f-serif: "Frank Ruhl Libre", "David", serif;
+  --f-digits: "Cormorant Garamond", "Frank Ruhl Libre", Georgia, serif;
+  --f-body: "Assistant", "Segoe UI", Arial, sans-serif;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--sea-deep);
+  color: var(--foam);
+  font-family: var(--f-body);
+  font-size: 17px;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* ---------- HERO ---------- */
+.hero {
+  position: relative;
+  min-height: clamp(600px, 92svh, 900px);
+  display: flex;
+  flex-direction: column;
+  isolation: isolate;
+  overflow: hidden;
+}
+.hero-photo {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%; max-width: 100%;
+  object-fit: cover; object-position: 52% 55%;
+  z-index: -3;
+  animation: drift 24s ease-in-out infinite alternate;
+}
+@keyframes drift { from { transform: scale(1.04); } to { transform: scale(1.12) translateY(-1.5%); } }
+.hero-veil {
+  position: absolute; inset: 0; z-index: -2;
+  background:
+    linear-gradient(180deg, rgba(11,37,48,.72) 0%, rgba(11,37,48,.28) 30%, rgba(11,37,48,0) 48%, rgba(11,37,48,.15) 70%, var(--sea-deep) 100%),
+    radial-gradient(ellipse at 50% 10%, rgba(244,185,178,.25), transparent 60%);
+}
+.glints { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+
+.hero-inner {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 28px 0;
+  text-align: center;
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+}
+.bsd {
+  align-self: flex-start;
+  font-family: var(--f-serif); font-size: 13px; letter-spacing: .08em;
+  color: var(--foam-dim);
+}
+.kicker {
+  margin: 10px 0 0;
+  font-family: var(--f-body); font-weight: 300;
+  font-size: clamp(15px, 3.6vw, 19px); letter-spacing: .14em;
+  color: var(--blush);
+  animation: rise 1.2s .2s both cubic-bezier(.2,.7,.2,1);
+}
+h1 {
+  margin: 0;
+  font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(52px, 13vw, 128px);
+  line-height: 1.02;
+  text-wrap: balance;
+  text-shadow: 0 4px 30px rgba(11,37,48,.55);
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: baseline; column-gap: .25em;
+}
+h1 .n, h1 .amp { display: inline-block; }
+h1 .n { animation: rise 1.4s both cubic-bezier(.2,.7,.2,1); }
+h1 .n:first-child { animation-delay: .4s; }
+h1 .n:last-child { animation-delay: .75s; }
+h1 .amp {
+  font-family: var(--f-digits); font-style: italic; font-weight: 400;
+  font-size: .78em; color: var(--gold);
+  animation: glow 1.6s .6s both ease-out;
+}
+@keyframes rise { from { opacity: 0; transform: translateY(18px); filter: blur(6px); } to { opacity: 1; transform: none; filter: none; } }
+@keyframes glow { from { opacity: 0; transform: scale(.6) rotate(-8deg); } to { opacity: 1; transform: none; } }
+
+.dates {
+  margin-top: 8px;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 10px 16px;
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(17px, 4vw, 22px);
+  animation: rise 1.2s 1s both cubic-bezier(.2,.7,.2,1);
+}
+.dates .heb { color: var(--gold); font-weight: 500; }
+.dates .greg { font-family: var(--f-digits); font-size: 1.08em; letter-spacing: .06em; font-variant-numeric: lining-nums; }
+.dates .dot { width: 5px; height: 5px; border-radius: 50%; background: var(--blush); }
+
+/* ---------- COUNTDOWN ---------- */
+.countdown {
+  margin-top: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 40px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  animation: rise 1.2s 1.3s both cubic-bezier(.2,.7,.2,1);
+}
+.countdown-label {
+  font-size: 13px; letter-spacing: .28em; color: var(--foam);
+  text-shadow: 0 1px 10px rgba(11,37,48,.8);
+}
+.tiles {
+  display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: clamp(8px, 2.4vw, 18px);
+  width: min(100%, 640px);
+}
+.tile {
+  position: relative;
+  aspect-ratio: 1 / 1.08; max-width: 100%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px;
+  border-radius: 22px;
+  background: linear-gradient(160deg, rgba(255,255,255,.22), rgba(255,255,255,.05));
+  border: 1px solid var(--glass-edge);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  backdrop-filter: blur(14px) saturate(1.4);
+  box-shadow: 0 18px 40px -18px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.35);
+  overflow: hidden;
+}
+.tile::after {
+  content: ""; position: absolute; inset: -40% -60%;
+  background: linear-gradient(115deg, transparent 42%, rgba(255,255,255,.28) 50%, transparent 58%);
+  transform: translateX(-60%);
+  animation: sheen 7s ease-in-out infinite;
+  pointer-events: none;
+}
+.tile:nth-child(2)::after { animation-delay: .4s; }
+.tile:nth-child(3)::after { animation-delay: .8s; }
+.tile:nth-child(4)::after { animation-delay: 1.2s; }
+@keyframes sheen { 0%, 70% { transform: translateX(-60%); } 100% { transform: translateX(60%); } }
+.num {
+  font-family: var(--f-digits); font-weight: 500;
+  font-size: clamp(34px, 10vw, 68px); line-height: 1;
+  font-variant-numeric: tabular-nums lining-nums;
+  color: #fff;
+  text-shadow: 0 2px 14px rgba(11,37,48,.45);
+}
+.num.tick { animation: tick .5s cubic-bezier(.2,.7,.2,1); }
+@keyframes tick { from { opacity: .2; transform: translateY(-30%); } to { opacity: 1; transform: none; } }
+.unit { font-size: clamp(12px, 3vw, 15px); letter-spacing: .12em; color: var(--blush); }
+.shabbatot {
+  margin: 4px 0 0; font-family: var(--f-serif); font-weight: 300; font-size: 16px;
+  color: var(--foam-dim);
+  text-shadow: 0 1px 10px rgba(11,37,48,.8);
+}
+.shabbatot strong { color: var(--gold); font-weight: 500; }
+
+/* ---------- CELEBRATION ---------- */
+.celebrate {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 48px 8px;
+  text-align: center;
+}
+.celebrate h2 {
+  margin: 0; font-family: var(--f-display); font-weight: 400;
+  font-size: clamp(44px, 11vw, 96px); line-height: 1.05; color: var(--gold);
+  animation: glow 1.4s both ease-out;
+}
+.celebrate p { margin: 10px auto 0; max-width: 34ch; font-size: 19px; color: var(--foam); }
+
+/* ---------- BLESSING ---------- */
+.blessing {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 64px 72px;
+  display: flex; flex-direction: column; align-items: center; gap: 22px;
+  text-align: center;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(22,74,85,.9), transparent 70%),
+    var(--sea-deep);
+}
+.wave { width: 120px; height: 18px; color: var(--gold); }
+.verse {
+  margin: 0; max-width: 22ch;
+  font-family: var(--f-serif); font-weight: 300;
+  font-size: clamp(26px, 6vw, 40px); line-height: 1.35;
+  text-wrap: balance;
+}
+.verse em { font-style: normal; color: var(--blush); }
+.source { font-size: 13px; letter-spacing: .2em; color: var(--foam-dim); }
+.wish {
+  margin: 8px 0 0; max-width: 56ch;
+  font-size: 18px; line-height: 1.85; color: var(--foam-dim);
+}
+.wish strong { color: var(--foam); font-weight: 600; }
+
+footer {
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  padding-block: 0 48px;
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+  text-align: center;
+}
+.burst {
+  font: 600 15px/1 var(--f-body); letter-spacing: .06em;
+  color: var(--sea-deep);
+  background: linear-gradient(135deg, var(--gold), var(--blush));
+  border: 0; border-radius: 999px;
+  padding: 14px 28px;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -10px rgba(244,185,178,.6);
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.burst:hover { transform: translateY(-2px); box-shadow: 0 16px 34px -10px rgba(244,185,178,.75); }
+.burst:active { transform: translateY(0) scale(.97); }
+.burst:focus-visible { outline: 2px solid var(--foam); outline-offset: 4px; }
+.sign { font-family: var(--f-display); font-size: 22px; color: var(--foam); }
+.small { font-size: 13px; color: var(--foam-dim); letter-spacing: .1em; }
+
+@media (min-width: 900px) {
+  .hero-inner { padding-block: 40px 0; }
+  .countdown { padding-block: 0 64px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
+</style>
+
+</head>
+<body>
+<header class="hero" dir="rtl" lang="he">
+  <img class="hero-photo" src="couple.jpg" alt="יהודה ושולמית על שפת הים">
+  <div class="hero-veil"></div>
+  <canvas class="glints" id="glints" aria-hidden="true"></canvas>
+
+  <div class="hero-inner">
+    <span class="bsd">בס״ד</span>
+    <p class="kicker">מתרגשים וסופרים את הימים</p>
+    <h1><span class="n">יהודה</span><span class="amp">&amp;</span><span class="n">שולמית</span></h1>
+    <div class="dates">
+      <span class="heb">ד׳ בטבת תשפ״ז</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span class="greg">14.12.2026</span>
+    </div>
+  </div>
+
+  <section class="countdown" aria-label="ספירה לאחור עד החתונה">
+    <span class="countdown-label">עד החופה</span>
+    <div class="tiles" role="timer" aria-live="off">
+      <div class="tile"><span class="num" id="d">--</span><span class="unit">ימים</span></div>
+      <div class="tile"><span class="num" id="h">--</span><span class="unit">שעות</span></div>
+      <div class="tile"><span class="num" id="m">--</span><span class="unit">דקות</span></div>
+      <div class="tile"><span class="num" id="s">--</span><span class="unit">שניות</span></div>
+    </div>
+    <p class="shabbatot" id="shabbatot">יום שני, ד׳ בטבת</p>
+  </section>
+</header>
+
+<main dir="rtl" lang="he">
+  <section class="celebrate" id="celebrate" hidden>
+    <h2>מזל טוב!</h2>
+    <p>הגיע היום הגדול. יהודה ושולמית נכנסים לחופה, ואנחנו שמחים איתם מכל הלב.</p>
+  </section>
+
+  <section class="blessing">
+    <svg class="wave" viewBox="0 0 120 18" fill="none" aria-hidden="true">
+      <path d="M2 9c10-8 19-8 29 0s19 8 29 0 19-8 29 0 19 8 29 0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/>
+    </svg>
+    <p class="verse">קוֹל שָׂשׂוֹן וְקוֹל שִׂמְחָה,<br><em>קוֹל חָתָן וְקוֹל כַּלָּה</em></p>
+    <span class="source">ירמיהו ל״ג</span>
+    <p class="wish">
+      לכבוד <strong>יהודה ושולמית</strong>, שתזכו לבנות בית נאמן בישראל, מלא אהבה, אחווה, שלום ורעות.
+      שהשמחה של היום הזה תלווה אתכם כל השנים, ושתמיד תמצאו זה בזו את החבר הכי טוב ואת הבית הכי חם.
+    </p>
+  </section>
+</main>
+
+<footer dir="rtl" lang="he">
+  <button class="burst" id="burst" type="button">שלחו קונפטי לזוג</button>
+  <span class="sign">באהבה גדולה</span>
+  <span class="small">נתראה בחתונה</span>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/canvas-confetti/1.9.3/confetti.browser.min.js"></script>
+<script>
+(() => {
+  // 4 Tevet 5787 = Monday 14 Dec 2026, chuppah at 19:00 Israel time
+  const TARGET = new Date("2026-12-14T19:00:00+02:00").getTime();
+  const $ = id => document.getElementById(id);
+  const els = { d: $("d"), h: $("h"), m: $("m"), s: $("s") };
+  const shabbatot = $("shabbatot"), celebrate = $("celebrate");
+  const pad = n => String(n).padStart(2, "0");
+  const palette = ["#e6c78f", "#f4b9b2", "#ffffff", "#7fc4c0", "#f7dccf"];
+  let done = false, timer;
+
+  function set(el, val) {
+    if (el.textContent === val) return;
+    el.textContent = val;
+    el.classList.remove("tick"); void el.offsetWidth; el.classList.add("tick");
+  }
+
+  function shabbatotUntil(now) {
+    let count = 0;
+    const day = new Date(now); day.setHours(0, 0, 0, 0);
+    for (day.setDate(day.getDate() + 1); day.getTime() < TARGET; day.setDate(day.getDate() + 1)) {
+      if (day.getDay() === 6) count++;
+    }
+    return count;
+  }
+
+  function render() {
+    const now = Date.now();
+    const diff = Math.max(0, TARGET - now);
+    const sec = Math.floor(diff / 1000);
+    set(els.d, String(Math.floor(sec / 86400)));
+    set(els.h, pad(Math.floor(sec / 3600) % 24));
+    set(els.m, pad(Math.floor(sec / 60) % 60));
+    set(els.s, pad(sec % 60));
+
+    const sh = shabbatotUntil(now);
+    shabbatot.innerHTML = diff > 0
+      ? (sh > 1 ? `עוד <strong>${sh}</strong> שבתות, ונפגשים מתחת לחופה`
+        : sh === 1 ? `עוד <strong>שבת אחת</strong>, ונפגשים מתחת לחופה`
+        : `השבוע! נפגשים מתחת לחופה`)
+      : `החופה כבר כאן`;
+
+    if (diff === 0 && !done) {
+      done = true;
+      clearInterval(timer);
+      celebrate.hidden = false;
+      celebrate.scrollIntoView({ behavior: "smooth", block: "center" });
+      grandFinale();
+    }
+  }
+
+  function burst(origin) {
+    if (typeof confetti !== "function") return;
+    confetti({ particleCount: 90, spread: 75, startVelocity: 42, origin, colors: palette, scalar: 1.05, disableForReducedMotion: true });
+  }
+  function grandFinale() {
+    if (typeof confetti !== "function") return;
+    const end = Date.now() + 4500;
+    (function frame() {
+      confetti({ particleCount: 4, angle: 60, spread: 60, origin: { x: 0, y: .7 }, colors: palette, disableForReducedMotion: true });
+      confetti({ particleCount: 4, angle: 120, spread: 60, origin: { x: 1, y: .7 }, colors: palette, disableForReducedMotion: true });
+      if (Date.now() < end) requestAnimationFrame(frame);
+    })();
+    setInterval(() => burst({ x: Math.random() * .6 + .2, y: .35 }), 6000);
+  }
+
+  document.getElementById("burst").addEventListener("click", e => {
+    const r = e.currentTarget.getBoundingClientRect();
+    burst({ x: (r.left + r.width / 2) / innerWidth, y: (r.top + r.height / 2) / innerHeight });
+  });
+
+  render();
+  timer = setInterval(render, 1000);
+
+  // Sun glints dancing on the water
+  const cv = document.getElementById("glints");
+  const ctx = cv.getContext("2d");
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  let W, H, dots = [];
+  function size() {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    W = cv.clientWidth; H = cv.clientHeight;
+    cv.width = W * dpr; cv.height = H * dpr;
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    const n = Math.round(Math.min(90, W * H / 9000));
+    dots = Array.from({ length: n }, () => ({
+      x: Math.random() * W,
+      y: H * (.3 + Math.random() * .55),
+      r: .6 + Math.random() * 1.8,
+      p: Math.random() * Math.PI * 2,
+      v: .6 + Math.random() * 1.6,
+      dx: (Math.random() - .5) * .15
+    }));
+  }
+  function draw(t) {
+    ctx.clearRect(0, 0, W, H);
+    for (const g of dots) {
+      const a = Math.max(0, Math.sin(t / 1000 * g.v + g.p));
+      if (a < .05) continue;
+      g.x += g.dx; if (g.x < 0) g.x = W; if (g.x > W) g.x = 0;
+      const R = g.r * (1 + a * 2.2);
+      ctx.globalAlpha = a * .85;
+      ctx.fillStyle = "#fff";
+      ctx.beginPath(); ctx.arc(g.x, g.y, g.r * a, 0, 7); ctx.fill();
+      ctx.globalAlpha = a * .45;
+      ctx.fillRect(g.x - R, g.y - .4, R * 2, .8);
+      ctx.fillRect(g.x - .4, g.y - R, .8, R * 2);
+    }
+    if (!reduce) requestAnimationFrame(draw);
+  }
+  size(); addEventListener("resize", size);
+  requestAnimationFrame(draw);
+})();
+</script>
+</body>
+</html>
