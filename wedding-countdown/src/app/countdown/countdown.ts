@@ -33,13 +33,15 @@ export class Countdown {
     const id = setInterval(() => this.now.set(Date.now()), 1000);
     inject(DestroyRef).onDestroy(() => clearInterval(id));
 
-    // Celebrate every minute that passes (skipping the first read on page load)
+    // Explode once when the names have landed, then every minute that passes
     const confetti = inject(ConfettiService);
+    const welcome = setTimeout(() => confetti.explode(), 2200);
+    inject(DestroyRef).onDestroy(() => clearTimeout(welcome));
     let lastMinute: number | undefined;
     effect(() => {
       const minute = this.minutesLeft();
       if (lastMinute !== undefined && minute !== lastMinute && this.remaining() > 0) {
-        confetti.burst({ x: 0.5, y: 0.45 });
+        confetti.explode();
       }
       lastMinute = minute;
     });

@@ -13,16 +13,24 @@ export class ConfettiService {
       origin,
       colors: COLORS,
       scalar: 1.05,
-      disableForReducedMotion: true,
+      zIndex: 1000,
     });
+  }
+
+  /** A big explosion from the middle of the screen plus both sides. */
+  explode(): void {
+    const base = { colors: COLORS, zIndex: 1000, scalar: 1.15 };
+    confetti({ ...base, particleCount: 160, spread: 120, startVelocity: 55, origin: { x: 0.5, y: 0.45 } });
+    confetti({ ...base, particleCount: 80, angle: 60, spread: 70, startVelocity: 60, origin: { x: 0, y: 0.75 } });
+    confetti({ ...base, particleCount: 80, angle: 120, spread: 70, startVelocity: 60, origin: { x: 1, y: 0.75 } });
   }
 
   /** Side cannons for a few seconds, then a gentle burst every 6s. */
   grandFinale(): void {
     const end = Date.now() + 4500;
     const frame = () => {
-      confetti({ particleCount: 4, angle: 60, spread: 60, origin: { x: 0, y: 0.7 }, colors: COLORS, disableForReducedMotion: true });
-      confetti({ particleCount: 4, angle: 120, spread: 60, origin: { x: 1, y: 0.7 }, colors: COLORS, disableForReducedMotion: true });
+      confetti({ particleCount: 4, angle: 60, spread: 60, origin: { x: 0, y: 0.7 }, colors: COLORS, zIndex: 1000 });
+      confetti({ particleCount: 4, angle: 120, spread: 60, origin: { x: 1, y: 0.7 }, colors: COLORS, zIndex: 1000 });
       if (Date.now() < end) requestAnimationFrame(frame);
     };
     frame();
