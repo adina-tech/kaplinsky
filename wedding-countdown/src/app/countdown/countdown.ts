@@ -1,4 +1,5 @@
 import { Component, computed, DestroyRef, effect, inject, input, output, signal } from '@angular/core';
+import { ConfettiService } from '../confetti.service';
 
 const pad = (n: number) => String(n).padStart(2, '0');
 
@@ -25,9 +26,23 @@ export class Countdown {
     ];
   });
 
+  /** Whole minutes left; changes once a minute, when the seconds roll past 00. */
+  private readonly minutesLeft = computed(() => Math.floor(this.remaining() / 60_000));
+
   constructor() {
     const id = setInterval(() => this.now.set(Date.now()), 1000);
     inject(DestroyRef).onDestroy(() => clearInterval(id));
+
+    // Celebrate every minute that passes (skipping the first read on page load)
+    const confetti = inject(ConfettiService);
+    let lastMinute: number | undefined;
+    effect(() => {
+      const minute = this.minutesLeft();
+      if (lastMinute !== undefined && minute !== lastMinute && this.remaining() > 0) {
+        confetti.burst({ x: 0.5, y: 0.45 });
+      }
+      lastMinute = minute;
+    });
 
     let fired = false;
     effect(() => {
